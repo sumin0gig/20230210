@@ -37,8 +37,7 @@ app.get('/addaccounttitle',(req,res)=>{
 app.delete('/addaccounttitle/:title',(req,res)=>{
 	const {title}=req.params;
 	conn.query(`delete from titletable where \`desc\`='${title}'`,(error,result,fields)=>{
-		res.send("ok");
-		console.log(error);
+			console.log(error);
 	})
 })
 
@@ -47,7 +46,6 @@ app.post('/ledgerenter',(req,res)=>{
 	const {l_date,l_title,l_price,l_left,l_right,l_star}=req.body;
 	conn.query(`INSERT INTO ledger(l_date,l_title,l_price,l_left,l_right,l_star) values(${l_date},'${l_title}','${l_price}','${l_left}','${l_right}','${l_star}')`
 	,(error,result,fields)=>{
-		res.send("ok")
 	})
 })
 app.get('/ledgerenter',(req,res)=>{
@@ -59,7 +57,6 @@ app.get('/ledgerenter',(req,res)=>{
 app.delete('/ledgerenter/:id',(req,res)=>{
 	const {id}=req.params;
 	conn.query(`delete from ledger where id=${id}`,(error,result,fields)=>{
-		res.send("ok");
 	})
 })
 
