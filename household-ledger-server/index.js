@@ -26,7 +26,7 @@ app.post('/addaccounttitle',(req,res)=>{
 	const {title,desc,isFixed}=req.body;
 	conn.query("INSERT INTO titletable(`title`, `desc`, `isFixed`) values(?,?,?)",
     [title, desc, isFixed],(error,result,fields)=>{
-			result&&res.send("등록되었습니다.");
+			result&&res.send("ok");
 		})
 });
 app.get('/addaccounttitle',(req,res)=>{
@@ -38,6 +38,13 @@ app.delete('/addaccounttitle/:title',(req,res)=>{
 	const {title}=req.params;
 	conn.query(`delete from titletable where \`desc\`='${title}'`,(error,result,fields)=>{
 			console.log(error);
+	})
+})
+app.patch('/addaccounttitle/:id',(req,res)=>{
+	const {id}=req.params;
+	const {text,fixed}=req.body;
+	conn.query(`update titletable set \`desc\`='${text}', isFixed='${fixed}' where id='${id}'`,(error,result,fields)=>{
+		res.send(result);
 	})
 })
 
